@@ -1,0 +1,28 @@
+# ========== GLOBAL IGNORES ==========
+# OS and editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Logs and temp
+logs/
+*.log
+tmp/
+temp/
+*.tmp
+
+# ========== BACKEND ==========
+backend/node_modules/
+backend/.env
+backend/dist/
+backend/build/
+backend/coverage/
+
+# ========== FRONTEND ==========
+
+# Database exports or backups
+*.sql
+*.sqlite
+dump.rdb
