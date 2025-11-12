@@ -8,9 +8,10 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes.js';
 import ewasteRoutes from './routes/ewaste.routes.js';
 import centresRoutes from './routes/centres.routes.js';
-//import pickupsRoutes from './routes/pickups.routes.js';
-//import rewardsRoutes from './routes/rewards.routes.js';
+import pickupsRoutes from './routes/pickups.routes.js';
+import rewardsRoutes from './routes/rewards.routes.js';
 import errorHandler from './middleware/error.middleware.js';
+import viewsRoutes from './routes/views.routes.js';
 
 dotenv.config();
 
@@ -48,8 +49,9 @@ app.use(
 app.use('/api/auth', authRoutes);
 app.use('/api/ewaste', ewasteRoutes);
 app.use('/api/centres', centresRoutes);
-//app.use('/api/pickups', pickupsRoutes);
-//app.use('/api/rewards', rewardsRoutes);
+app.use('/api/pickups', pickupsRoutes);
+app.use('/api/rewards', rewardsRoutes);
+app.use('/api/views', viewsRoutes);
 
 // Health check
 app.get('/health', (req, res) => res.json({ status: 'ok' }));

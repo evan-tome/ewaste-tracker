@@ -1,11 +1,19 @@
 import express from 'express';
-import requireAuth from '../middleware/auth.middleware.js';
-import { getAllItems, createItem } from '../controllers/ewaste.controller.js';
+import {
+  getAllItems,
+  getItemsByUser,
+  addItem,
+  updateItem,
+  deleteItem
+} from '../controllers/ewaste.controller.js';
 
 const router = express.Router();
 
-// Only logged-in users can access these
-router.get('/', requireAuth, getAllItems);
-router.post('/', requireAuth, createItem);
+// Routes
+router.get('/', getAllItems);
+router.get('/:userId', getItemsByUser);
+router.post('/', addItem);
+router.put('/:id', updateItem);
+router.delete('/:id', deleteItem);
 
 export default router;
