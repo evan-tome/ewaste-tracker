@@ -32,7 +32,7 @@ backend/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/<your-username>/ewaste-tracker.git
+git clone https://github.com/evan-tome/ewaste-tracker.git
 cd ewaste-tracker/backend
 ```
 
