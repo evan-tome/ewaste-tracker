@@ -52,7 +52,16 @@ DB_NAME=ewaste_tracker
 SESSION_SECRET=replace_with_a_secret
 ```
 
-### 4. Start the server
+### 4. Set up the database
+
+Open MySQL CLI or Workbench.
+
+Run the schema file to create tables:
+```bash
+mysql -u root -p < schema/db.sql
+```
+
+### 5. Start the server
 ```bash
 npm run dev
 ```
