@@ -18,6 +18,7 @@ backend/
 │   └── utils/           # Helper functions
 ├── db/
 │   ├── schema.sql       # Database schema
+│   ├── views.sql        # Database views
 ├── .env                 # Environment variables
 ├── package.json         # Node.js dependencies & scripts
 └── server.js            # App entry point
