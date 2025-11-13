@@ -12,6 +12,8 @@ import pickupsRoutes from './routes/pickups.routes.js';
 import rewardsRoutes from './routes/rewards.routes.js';
 import errorHandler from './middleware/error.middleware.js';
 import viewsRoutes from './routes/views.routes.js';
+import carbonRoutes from './routes/carbon.routes.js';
+import mapsRoutes from './routes/maps.routes.js';
 
 dotenv.config();
 
@@ -52,6 +54,8 @@ app.use('/api/centres', centresRoutes);
 app.use('/api/pickups', pickupsRoutes);
 app.use('/api/rewards', rewardsRoutes);
 app.use('/api/views', viewsRoutes);
+app.use('/api/carbon', carbonRoutes);
+app.use('/api/maps', mapsRoutes);
 
 // Health check
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
