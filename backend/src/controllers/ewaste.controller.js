@@ -46,12 +46,27 @@ export const addItem = async (req, res) => {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
+    // Insert recycled item
     const [result] = await db.query(`
       INSERT INTO RecycledItems (user_id, centre_id, item_type, quantity, weight, date_logged)
       VALUES (?, ?, ?, ?, ?, CURDATE())
     `, [user_id, centre_id, item_type, quantity, weight]);
 
-    res.status(201).json({ message: 'Recycled item logged successfully', item_id: result.insertId });
+    // Award points
+    const POINTS_AWARDED = 10;
+
+    await db.query(`
+      UPDATE Users
+      SET points = points + ?
+      WHERE user_id = ?
+    `, [POINTS_AWARDED, user_id]);
+
+    res.status(201).json({
+      message: 'Recycled item logged successfully. Points awarded.',
+      item_id: result.insertId,
+      points_awarded: POINTS_AWARDED
+    });
+
   } catch (err) {
     console.error('Error adding recycled item:', err);
     res.status(500).json({ message: 'Server error adding recycled item' });
