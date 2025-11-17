@@ -50,16 +50,20 @@ DB_HOST=localhost
 DB_USER=root
 DB_PASS=your_password
 DB_NAME=ewaste_tracker
-SESSION_SECRET=replace_with_a_secret
+GOOGLE_MAPS_API_KEY=your_key
 ```
 
 ### 4. Set up the database
 
 Open MySQL CLI or Workbench.
 
-Run the schema file to create tables:
+Run the SQL file to create schema and tables:
 ```bash
-mysql -u root -p < schema/db.sql
+mysql -u root -p < db/db.sql
+```
+Run the SQL file to create views:
+```bash
+mysql -u root -p < db/views.sql
 ```
 
 ### 5. Start the server
