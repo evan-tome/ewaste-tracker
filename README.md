@@ -53,7 +53,8 @@ DB_NAME=ewaste_tracker
 SESSION_SECRET=your_secret
 GOOGLE_MAPS_API_KEY=your_key
 ```
-Replace SESSION_SECRET with a secure, randomly generated string
+Replace SESSION_SECRET with a secure, randomly generated string.
+
 Generate a Google Places API key and replace GOOGLE_MAPS_API_KEY with your key.
 https://console.cloud.google.com/
 
