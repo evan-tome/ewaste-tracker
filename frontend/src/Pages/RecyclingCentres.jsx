@@ -53,7 +53,7 @@ const RecyclingCentresPage = () => {
   }, [nameSearch, addressSearch]);
 
   return (
-    <div className="page">
+    <div className="page" style={{ textAlign: 'center', marginTop: '150px' }}>
       <h1 className="title">Recycling Centres</h1>
       <p className="subtitle">Search for a centre and request a pickup.</p>
 
