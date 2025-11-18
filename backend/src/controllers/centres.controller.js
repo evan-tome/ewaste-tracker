@@ -1,10 +1,46 @@
 import db from '../../config/db.js';
 
-// Get all centres
+// Get all centres with search & filters
 export const getCentres = async (req, res) => {
   try {
-    const [rows] = await db.query('SELECT * FROM RecyclingCentres');
+    const { name, postal_code, keyword, start_date, end_date } = req.query;
+
+    // Base query
+    let sql = `SELECT * FROM RecyclingCentres WHERE 1=1`;
+    const params = [];
+
+    // Filter by name
+    if (name) {
+      sql += ` AND name LIKE ?`;
+      params.push(`%${name}%`);
+    }
+
+    // Filter by postal code
+    if (postal_code) {
+      sql += ` AND postal_code = ?`;
+      params.push(postal_code);
+    }
+
+    // Keyword search (name + address)
+    if (keyword) {
+      sql += ` AND (name LIKE ? OR address LIKE ?)`;
+      params.push(`%${keyword}%`, `%${keyword}%`);
+    }
+
+    // Date range filtering (optional if created_at exists)
+    if (start_date) {
+      sql += ` AND created_at >= ?`;
+      params.push(start_date);
+    }
+
+    if (end_date) {
+      sql += ` AND created_at <= ?`;
+      params.push(end_date);
+    }
+
+    const [rows] = await db.query(sql, params);
     res.json(rows);
+
   } catch (err) {
     console.error('Error fetching centres:', err);
     res.status(500).json({ message: 'Server error fetching centres' });
