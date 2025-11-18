@@ -1,21 +1,42 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';  // <-- added Link
+import { useNavigate, Link } from 'react-router-dom';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('user'); // default role
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    setError();
 
-    if (username && password) {
-      if (role === 'admin') {
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include", // needed for sessions
+        body: JSON.stringify({
+          email,
+          password
+        })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+
+      const user = data.user; // user = { id, username, role }
+
+      if (user.role === "admin") {
         navigate('/admin'); // redirect to admin dashboard
       } else {
         navigate('/user'); // redirect to user dashboard
       }
+    } catch (err) {
+      setError(err.message);
     }
   };
 
@@ -25,10 +46,10 @@ function Login() {
 
       <form onSubmit={handleLogin}>
         <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <br /><br />
@@ -40,15 +61,12 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <br /><br />
-
-        <select value={role} onChange={(e) => setRole(e.target.value)}>
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
 
         <br /><br />
         <button type="submit">Login</button>
+
+        <br /><br />
+        {error && <p style={{ color: "red" }}>{error}</p>}
       </form>
 
       {/* NEW SECTION — clickable link to registration page */}
