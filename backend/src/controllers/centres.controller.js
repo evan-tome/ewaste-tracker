@@ -3,21 +3,21 @@ import db from '../../config/db.js';
 // Get all centres with search & filters
 export const getCentres = async (req, res) => {
   try {
-    const { name, city } = req.query;
+    const { name, address } = req.query;
 
     let sql = `SELECT * FROM RecyclingCentres WHERE 1=1`;
     const params = [];
 
-    // STARTSWITH name filter
+    // NAME startsWith
     if (name) {
       sql += ` AND name LIKE ?`;
       params.push(`${name}%`);
     }
 
-    // EXACT city filter
-    if (city) {
-      sql += ` AND city = ?`;
-      params.push(city);
+    // ADDRESS contains
+    if (address) {
+      sql += ` AND address LIKE ?`;
+      params.push(`%${address}%`);
     }
 
     const [rows] = await db.query(sql, params);
