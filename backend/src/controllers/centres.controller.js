@@ -3,39 +3,21 @@ import db from '../../config/db.js';
 // Get all centres with search & filters
 export const getCentres = async (req, res) => {
   try {
-    const { name, postal_code, keyword, start_date, end_date } = req.query;
+    const { name, city } = req.query;
 
-    // Base query
     let sql = `SELECT * FROM RecyclingCentres WHERE 1=1`;
     const params = [];
 
-    // Filter by name
+    // STARTSWITH name filter
     if (name) {
       sql += ` AND name LIKE ?`;
-      params.push(`%${name}%`);
+      params.push(`${name}%`);
     }
 
-    // Filter by postal code
-    if (postal_code) {
-      sql += ` AND postal_code = ?`;
-      params.push(postal_code);
-    }
-
-    // Keyword search (name + address)
-    if (keyword) {
-      sql += ` AND (name LIKE ? OR address LIKE ?)`;
-      params.push(`%${keyword}%`, `%${keyword}%`);
-    }
-
-    // Date range filtering (optional if created_at exists)
-    if (start_date) {
-      sql += ` AND created_at >= ?`;
-      params.push(start_date);
-    }
-
-    if (end_date) {
-      sql += ` AND created_at <= ?`;
-      params.push(end_date);
+    // EXACT city filter
+    if (city) {
+      sql += ` AND city = ?`;
+      params.push(city);
     }
 
     const [rows] = await db.query(sql, params);
