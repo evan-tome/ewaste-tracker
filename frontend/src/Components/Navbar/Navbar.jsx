@@ -46,9 +46,9 @@ const Navbar = () => {
       <ul>
         {role === null && (
           <>
-            <li><a href="#top" className="btn">Home</a></li>
-            <li><a href="#login-section" className="btn">Sign in</a></li>
-            <li><a href="#about-us-section"><button className="btn">About Us</button></a></li>
+            <li><a href="/" className="btn">Home</a></li>
+            <li><a href="/login" className="btn">Sign in</a></li>
+            <li><a href="/#about-us-section"><button className="btn">About Us</button></a></li>
           </>
         )}
 
@@ -56,7 +56,7 @@ const Navbar = () => {
           <>
             
             <li><a href="#top"><button className="btn">Profile</button></a></li>
-            <li><a href="#about-us-section"><button className="btn">Request Pickup</button></a></li>
+            <li><a href="/centres"><button className="btn">Request Pickup</button></a></li>
             <li><a href="#about-us-section"><button className="btn">Leaderboard</button></a></li>
             <li><a href="/" className="btn" onClick={handleLogout}>Logout</a></li>
           </>

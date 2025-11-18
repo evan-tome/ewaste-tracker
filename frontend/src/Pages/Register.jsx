@@ -45,7 +45,7 @@ function Register() {
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+    <div style={{ textAlign: 'center', marginTop: '150px' }}>
       <h1>Create Account</h1>
 
       <form onSubmit={handleRegister}>

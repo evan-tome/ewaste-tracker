@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
+import "./Login.css";
+
 function Login() {
   const { setRole } = useContext(AuthContext);
   const [email, setEmail] = useState('');
@@ -46,7 +48,7 @@ function Login() {
   };
 
   return (
-    <div id="login-section" style={{ textAlign: 'center', marginTop: '50px' }}>
+    <div id="login-section" style={{ textAlign: 'center', marginTop: '150px' }}>
       <h1>Login</h1>
 
       <form onSubmit={handleLogin}>

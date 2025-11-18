@@ -10,6 +10,7 @@ import Login from './Pages/Login';
 import UserDashboard from './Pages/User';
 import AdminDashboard from './Pages/Admin';
 import Register from './Pages/Register';
+import RecyclingCentres from './Pages/RecyclingCentres';
 
 const App = () => {
   return (
@@ -29,7 +30,6 @@ const App = () => {
                   <Programs />
                   <About />
                 </div>
-                <Login />
               </>
             }
           />
@@ -37,7 +37,9 @@ const App = () => {
           {/* Auth & dashboard routes */}
           <Route path="/user" element={<UserDashboard />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/centres" element={<RecyclingCentres />} />
         </Routes>
       </Router>
     </AuthProvider>
