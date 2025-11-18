@@ -13,7 +13,7 @@ import rewardsRoutes from './routes/rewards.routes.js';
 import errorHandler from './middleware/error.middleware.js';
 import viewsRoutes from './routes/views.routes.js';
 import mapsRoutes from './routes/maps.routes.js';
-import exportRoutes from './routes/exportViews.routes.js';
+import exportViewsRoutes from './routes/exportViews.routes.js';
 
 dotenv.config();
 
