@@ -1,66 +1,33 @@
 // src/app.js
 import express from 'express';
-import session from 'express-session';
-import cors from 'cors';
-import helmet from 'helmet';
-import dotenv from 'dotenv';
 
 import authRoutes from './routes/auth.routes.js';
 import ewasteRoutes from './routes/ewaste.routes.js';
 import centresRoutes from './routes/centres.routes.js';
 import pickupsRoutes from './routes/pickups.routes.js';
 import rewardsRoutes from './routes/rewards.routes.js';
-import errorHandler from './middleware/error.middleware.js';
 import viewsRoutes from './routes/views.routes.js';
 import mapsRoutes from './routes/maps.routes.js';
 import exportViewsRoutes from './routes/exportViews.routes.js';
 
-dotenv.config();
+import errorHandler from './middleware/error.middleware.js';
 
-const app = express();
-
-// Security and JSON parsing
-app.use(helmet());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// CORS (allow frontend to send cookies)
-app.use(
-  cors({
-    origin: 'http://localhost:5173',
-    credentials: true,
-  })
-);
-
-// Session setup
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || 'defaultsecret',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      httpOnly: true,
-      secure: false, // set to true in production with HTTPS
-      sameSite: 'lax',
-      maxAge: 1000 * 60 * 60 * 24, // 1 day
-    },
-  })
-);
+const router = express.Router();
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/ewaste', ewasteRoutes);
-app.use('/api/centres', centresRoutes);
-app.use('/api/pickups', pickupsRoutes);
-app.use('/api/rewards', rewardsRoutes);
-app.use('/api/views', viewsRoutes);
-app.use('/api/maps', mapsRoutes);
-app.use('/api/export', exportViewsRoutes);
+router.use('/auth', authRoutes);
+router.use('/ewaste', ewasteRoutes);
+router.use('/centres', centresRoutes);
+router.use('/pickups', pickupsRoutes);
+router.use('/rewards', rewardsRoutes);
+router.use('/views', viewsRoutes);
+router.use('/maps', mapsRoutes);
+router.use('/export', exportViewsRoutes);
 
 // Health check
-app.get('/health', (req, res) => res.json({ status: 'ok' }));
+router.get('/health', (req, res) => res.json({ status: 'ok' }));
 
-// Centralized error handler
-app.use(errorHandler);
+// Error handler
+router.use(errorHandler);
 
-export default app;
+export default router;

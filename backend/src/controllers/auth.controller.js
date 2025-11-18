@@ -77,3 +77,14 @@ export const logout = (req, res) => {
     res.json({ message: 'Logged out successfully' });
   });
 };
+
+export const sessionCheck = (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ loggedIn: false });
+  }
+
+  res.json({
+    loggedIn: true,
+    user: req.session.user
+  });
+};
