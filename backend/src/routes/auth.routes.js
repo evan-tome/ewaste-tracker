@@ -3,10 +3,9 @@ import { register, login, logout, sessionCheck } from '../controllers/auth.contr
 
 const router = express.Router();
 
+router.get('/session', sessionCheck);
 router.post('/register', register);
 router.post('/login', login);
 router.post('/logout', logout);
-router.get('/session', sessionCheck);
-
 
 export default router;

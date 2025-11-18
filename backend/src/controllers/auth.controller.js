@@ -34,7 +34,6 @@ export const register = async (req, res) => {
   }
 };
 
-
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -79,12 +78,19 @@ export const logout = (req, res) => {
 };
 
 export const sessionCheck = (req, res) => {
-  if (!req.session.user) {
-    return res.status(401).json({ loggedIn: false });
-  }
+  try {
+    if (!req.session.user) {
+      return res.status(200).json({ loggedIn: false, user: null });
+    }
 
-  res.json({
-    loggedIn: true,
-    user: req.session.user
-  });
+    return res.status(200).json({
+      loggedIn: true,
+      user: req.session.user
+    });
+
+  } catch (err) {
+    console.error("Session check error:", err);
+    return res.status(500).json({ message: "Server error" });
+  }
 };
+

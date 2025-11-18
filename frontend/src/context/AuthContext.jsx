@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext({
   role: null,
@@ -6,7 +6,7 @@ export const AuthContext = createContext({
   loading: true
 });
 
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -14,18 +14,27 @@ export function AuthProvider({ children }) {
     const checkSession = async () => {
       try {
         const res = await fetch("http://localhost:5000/api/auth/session", {
-          credentials: "include"  // IMPORTANT: sends cookies to backend
+          credentials: "include"
         });
 
-        if (res.ok) {
-          const data = await res.json();
-          setRole(data.user.role); // restore role after refresh
+        // Always parse JSON safely
+        const data = await res.json().catch(() => ({
+          loggedIn: false,
+          user: null
+        }));
+
+        if (data.loggedIn && data.user) {
+          setRole(data.user.role || null);
+        } else {
+          setRole(null);
         }
+
       } catch (err) {
         console.log("Session check failed:", err);
+        setRole(null);  // fallback to guest
       }
 
-      setLoading(false); // finished checking
+      setLoading(false);
     };
 
     checkSession();
@@ -33,8 +42,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={{ role, setRole, loading }}>
-      {!loading && children} 
-      {/* Prevents flickering the logged-out navbar */}
+      {!loading && children}
     </AuthContext.Provider>
   );
-}
+};
