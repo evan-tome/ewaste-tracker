@@ -32,3 +32,6 @@ a{
 html {
   scroll-behavior: smooth;
 }
+.landing-content {
+  margin-top: 80px; /* push content below navbar */
+}

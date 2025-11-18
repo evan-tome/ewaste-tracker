@@ -1,20 +1,30 @@
-.programs{
-    margin:80px auto;
-    width:100%;
-    display:flex;
-    align-items:center;
+.programs {
+    margin: 80px auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
 }
-.program img{
-    width:100%;
-    border-radius:10px;
+
+.program {
+    flex-basis: 31%;
+    position: relative;
+    aspect-ratio: 1 / 1; 
+    min-height: 250px; /* added: ensures box doesn't shrink */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* keep image + caption aligned */
+}
+
+.program img {
+    width: 100%;
+    max-height: 180px;   /* added: prevent image from overflowing/shrinking */
+    object-fit: cover;   /* added: maintain aspect ratio, cover area */
+    border-radius: 10px;
     display: block;
 }
-.program{
-    flex-basis: 31%;
-    position:relative;
-}
-.caption{
+
+.caption {
     border-radius: 10px;
     position: absolute;
     top: 0;
@@ -32,11 +42,13 @@
     padding-top: 70%;
     transition: 0.4s;
 }
-.caption img{
-    width:60px;
+
+.caption img {
+    width: 60px;
     margin-bottom: 10px;
 }
-.program:hover .caption{
+
+.program:hover .caption {
     opacity: 1;
     padding-top: 0%;
 }

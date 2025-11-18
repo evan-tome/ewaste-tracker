@@ -1,4 +1,6 @@
 nav{
+    height: 150px;
+       overflow: hidden; 
     width:100%;
    /* background:#333; */
     color:#fff;
@@ -12,7 +14,9 @@ nav{
     z-index: 10;
 }
 .logo{
-    width: 180px;
+    width: 200px;
+    height: auto;
+    padding-top: 20px;
 }
 nav ul li{
     display:inline-block;

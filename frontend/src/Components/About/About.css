@@ -1,8 +1,8 @@
-.about{
+.about {
     margin: 100px auto;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column; /* stack children vertically */
+    align-items: flex-start; /* optional: align text to left */
     width: 90%;
 }
 .about h3{
