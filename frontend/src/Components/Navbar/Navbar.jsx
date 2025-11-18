@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Navbar.css'
 import logo from '../../assets/logo.png'
 import { AuthContext } from '../../context/AuthContext';
@@ -7,6 +7,7 @@ import { AuthContext } from '../../context/AuthContext';
 const Navbar = () => {
   const { role, setRole } = useContext(AuthContext);
   const [sticky, setSticky] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => window.scrollY > 50 ? setSticky(true) : setSticky(false);
@@ -18,10 +19,25 @@ const Navbar = () => {
     console.log('[Navbar] current role:', role);
   }, [role]);
 
-  const handleLogout = (e) => {
+  const handleLogout = async (e) => {
     e.preventDefault();
-    setRole(null);
-    // optionally navigate to home: window.location.href = '/';
+
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/logout", {
+        method: "POST",
+        credentials: "include", // IMPORTANT for session cookies
+      });
+
+      if (!res.ok) {
+        console.error("Logout failed");
+        return;
+      }
+
+      setRole(null); // clear frontend role
+      navigate('/');
+    } catch (err) {
+      console.error("Logout error:", err);
+    }
   };
 
   return (
