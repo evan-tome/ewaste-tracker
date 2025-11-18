@@ -51,6 +51,7 @@ function Login() {
 
       <form onSubmit={handleLogin}>
         <input
+          name="email"
           type="email"
           placeholder="Email"
           value={email}
