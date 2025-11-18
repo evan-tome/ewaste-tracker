@@ -54,7 +54,7 @@ const Navbar = () => {
 
         {role === 'user' && (
           <>
-            
+            <li><a href="/" className="btn">Home</a></li>
             <li><a href="#top"><button className="btn">Profile</button></a></li>
             <li><a href="/centres"><button className="btn">Request Pickup</button></a></li>
             <li><a href="#about-us-section"><button className="btn">Leaderboard</button></a></li>
@@ -64,6 +64,7 @@ const Navbar = () => {
 
         {role === 'admin' && (
           <>
+            <li><a href="/" className="btn">Home</a></li>
             <li><a href="#top"><button className="btn">Profile</button></a></li>
             <li><a href="#about-us-section"><button className="btn">Analytics</button></a></li>
             <li><a href="/" className="btn" onClick={handleLogout}>Logout</a></li>
