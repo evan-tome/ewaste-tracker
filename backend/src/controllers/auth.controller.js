@@ -52,7 +52,13 @@ export const login = async (req, res) => {
     }
 
     // Store session
-    req.session.user = { id: user.user_id, username: user.username, role: user.role };
+    req.session.user = { 
+      id: user.user_id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+      date_joined: user.date_joined
+    };
 
     res.json({ message: 'Login successful', user: req.session.user });
   } catch (err) {
