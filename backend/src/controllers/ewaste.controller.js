@@ -52,19 +52,23 @@ export const addItem = async (req, res) => {
       VALUES (?, ?, ?, ?, ?, CURDATE())
     `, [user_id, centre_id, item_type, quantity, weight]);
 
-    // Award points
-    const POINTS_AWARDED = 10;
+    // Points calculation
+    const BASE_POINTS = 10;
+    const POINTS_PER_KG = 2;
 
+    const totalPoints = Math.floor((BASE_POINTS + (weight * POINTS_PER_KG)) * quantity);
+
+    // Award points
     await db.query(`
       UPDATE Users
       SET points = points + ?
       WHERE user_id = ?
-    `, [POINTS_AWARDED, user_id]);
+    `, [totalPoints, user_id]);
 
     res.status(201).json({
       message: 'Recycled item logged successfully. Points awarded.',
       item_id: result.insertId,
-      points_awarded: POINTS_AWARDED
+      points_awarded: totalPoints
     });
 
   } catch (err) {
