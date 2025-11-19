@@ -96,3 +96,13 @@ CREATE OR REPLACE VIEW pending_pickups AS
 SELECT pr.request_id, u.username, rc.name AS centre_name, pr.request_date, pr.status
 FROM PickupRequests pr JOIN Users u ON pr.user_id = u.user_id JOIN RecyclingCentres rc ON pr.centre_id = rc.centre_id
 WHERE pr.status <> 'Completed';
+
+-- Leaderboard
+CREATE OR REPLACE VIEW leaderboard AS
+SELECT
+    username,
+    points
+FROM Users
+WHERE points > 0
+ORDER BY points DESC
+LIMIT 100;

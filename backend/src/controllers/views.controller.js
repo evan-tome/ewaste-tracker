@@ -99,3 +99,13 @@ export const getPendingPickups = async (req, res) => {
     res.status(500).json({ message: 'Server error fetching pending pickups' });
   }
 };
+
+export const getLeaderboard = async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT * FROM leaderboard');
+    res.json(rows);
+  } catch (err) {
+    console.error('Error fetching leader:', err);
+    res.status(500).json({ message: 'Server error fetching leaderboard' });
+  }
+};

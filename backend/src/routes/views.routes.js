@@ -9,7 +9,8 @@ import {
   getRedeemedRewards,
   getPrestigiousAwards,
   getCompletedPickups,
-  getPendingPickups
+  getPendingPickups,
+  getLeaderboard
 } from '../controllers/views.controller.js';
 
 const router = express.Router();
@@ -24,5 +25,6 @@ router.get('/redeemed-rewards', getRedeemedRewards);
 router.get('/prestigious-awards', getPrestigiousAwards);
 router.get('/completed-pickups', getCompletedPickups);
 router.get('/pending-pickups', getPendingPickups);
+router.get('/leaderboard', getLeaderboard);
 
 export default router;

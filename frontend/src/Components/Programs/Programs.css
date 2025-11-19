@@ -7,19 +7,19 @@
 }
 
 .program {
-    flex-basis: 31%;
+    flex-basis: 30%;
     position: relative;
     aspect-ratio: 1 / 1; 
-    min-height: 250px; /* added: ensures box doesn't shrink */
+    min-height: 180px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* keep image + caption aligned */
+    justify-content: flex-start;
 }
 
 .program img {
     width: 100%;
-    max-height: 180px;   /* added: prevent image from overflowing/shrinking */
-    object-fit: cover;   /* added: maintain aspect ratio, cover area */
+    max-height: 165px;
+    object-fit: cover;
     border-radius: 10px;
     display: block;
 }
@@ -39,12 +39,12 @@
     color: #fff;
     cursor: pointer;
     opacity: 0.5;
-    padding-top: 70%;
+    padding-top: 65%;
     transition: 0.4s;
 }
 
 .caption img {
-    width: 60px;
+    width: 55px;
     margin-bottom: 10px;
 }
 
