@@ -37,7 +37,7 @@ function Register() {
         }
 
         // success - redirect to login
-        navigate('/');
+        navigate('/login');
       })
       .catch((err) => {
         setError(err.message);
@@ -46,7 +46,7 @@ function Register() {
 
   return (
     <div style={{ textAlign: 'center', marginTop: '150px' }}>
-      <h1>Create Account</h1>
+      <h1 className="title">Create Account</h1>
 
       <form onSubmit={handleRegister}>
         <input

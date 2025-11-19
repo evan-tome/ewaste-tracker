@@ -59,7 +59,7 @@ export const redeemReward = async (req, res) => {
       return res.status(400).json({ message: 'User ID and Reward ID are required' });
     }
 
-    // Check if user has enough points
+    // Load user and reward
     const [user] = await db.query('SELECT points FROM Users WHERE user_id = ?', [user_id]);
     const [reward] = await db.query('SELECT points_required FROM Rewards WHERE reward_id = ?', [reward_id]);
 
@@ -67,18 +67,30 @@ export const redeemReward = async (req, res) => {
       return res.status(404).json({ message: 'User or reward not found' });
     }
 
+    // Check if user has unlocked it
     if (user[0].points < reward[0].points_required) {
-      return res.status(400).json({ message: 'Insufficient points' });
+      return res.status(400).json({ message: 'Reward requires more points to unlock' });
     }
 
-    // Deduct points and record redemption
-    await db.query('UPDATE Users SET points = points - ? WHERE user_id = ?', [reward[0].points_required, user_id]);
-    await db.query(`
-      INSERT INTO UserRewards (user_id, reward_id, date_redeemed)
-      VALUES (?, ?, NOW())
-    `, [user_id, reward_id]);
+    // Prevent multiple redemptions
+    const [already] = await db.query(
+      `SELECT * FROM UserRewards WHERE user_id = ? AND reward_id = ?`,
+      [user_id, reward_id]
+    );
 
-    res.json({ message: 'Reward redeemed successfully' });
+    if (already.length > 0) {
+      return res.status(400).json({ message: 'Reward already redeemed' });
+    }
+
+    // Record reward redemption
+    await db.query(
+      `INSERT INTO UserRewards (user_id, reward_id, date_redeemed)
+       VALUES (?, ?, NOW())`,
+      [user_id, reward_id]
+    );
+
+    res.json({ message: 'Reward unlocked and claimed successfully' });
+
   } catch (err) {
     console.error('Error redeeming reward:', err);
     res.status(500).json({ message: 'Server error redeeming reward' });

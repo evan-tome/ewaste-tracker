@@ -10,7 +10,9 @@ const Hero = () => {
             <h2>Compete with thousands of users for real-world prizes</h2>
             <p>&nbsp;</p>
             
-            <button className='btn'>Get started!</button>
+            <a href="#about-us-section">
+              <button class="btn">Get started!</button>
+            </a>
         </div>
     </div>
   )

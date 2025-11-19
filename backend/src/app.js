@@ -9,6 +9,7 @@ import rewardsRoutes from './routes/rewards.routes.js';
 import viewsRoutes from './routes/views.routes.js';
 import mapsRoutes from './routes/maps.routes.js';
 import exportViewsRoutes from './routes/exportViews.routes.js';
+import userStatsRoutes from "./routes/userStats.routes.js";
 
 import errorHandler from './middleware/error.middleware.js';
 
@@ -23,6 +24,7 @@ router.use('/rewards', rewardsRoutes);
 router.use('/views', viewsRoutes);
 router.use('/maps', mapsRoutes);
 router.use('/export', exportViewsRoutes);
+router.use("/user", userStatsRoutes);
 
 // Health check
 router.get('/health', (req, res) => res.json({ status: 'ok' }));

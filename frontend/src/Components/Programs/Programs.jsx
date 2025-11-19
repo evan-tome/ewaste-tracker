@@ -22,7 +22,7 @@ const Programs = () => {
   return (
     <div className='programs'>
       
-      <div className="program" onClick={() => goTo("/user")}>
+      <div className="program" onClick={() => goTo("/dashboard")}>
         <img src={program_1} alt="" />
         <div className="caption">
           <p>Check your profile</p>
@@ -36,7 +36,7 @@ const Programs = () => {
         </div>
       </div>
 
-      <div className="program" onClick={() => goTo("/leaderboard")}>
+      <div className="program" onClick={() => goTo("/rewards")}>
         <img src={program_3} alt="" />
         <div className="caption">
           <p>Compete for rewards</p>

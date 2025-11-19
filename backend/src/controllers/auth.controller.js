@@ -57,7 +57,8 @@ export const login = async (req, res) => {
       username: user.username,
       email: user.email,
       role: user.role,
-      date_joined: user.date_joined
+      date_joined: user.date_joined,
+      points: user.points
     };
 
     res.json({ message: 'Login successful', user: req.session.user });

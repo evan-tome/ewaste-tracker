@@ -33,15 +33,14 @@ function Login() {
         throw new Error(data.message || "Login failed");
       }
 
-      const user = data.user; // user = { id, username, role }
+      const user = data.user;
 
       if (user.role === "admin") {
-        navigate('/admin'); // redirect to admin dashboard
         setRole("admin");
       } else {
-        navigate('/user'); // redirect to user dashboard
         setRole("user");
       }
+      navigate('/dashboard'); // redirect to dashboard
     } catch (err) {
       setError(err.message);
     }
@@ -49,7 +48,7 @@ function Login() {
 
   return (
     <div id="login-section" style={{ textAlign: 'center', marginTop: '150px' }}>
-      <h1>Login</h1>
+      <h1 className="title">Login</h1>
 
       <form onSubmit={handleLogin}>
         <input

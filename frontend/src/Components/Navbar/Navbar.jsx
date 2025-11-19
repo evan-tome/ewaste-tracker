@@ -44,29 +44,20 @@ const Navbar = () => {
     <nav className={`container ${sticky ? 'dark-nav' : ''}`}>
       <img src={logo} alt="Logo" className="logo" />
       <ul>
-        {role === null && (
+        {role === null ? (
           <>
             <li><a href="/" className="btn">Home</a></li>
             <li><a href="/#about-us-section"><button className="btn">About Us</button></a></li>
             <li><a href="/login" className="btn">Sign in</a></li>
           </>
-        )}
-
-        {role === 'user' && (
+        ) : (
           <>
             <li><a href="/" className="btn">Home</a></li>
-            <li><a href="/user"><button className="btn">Profile</button></a></li>
+            <li><a href="/dashboard"><button className="btn">Dashboard</button></a></li>
+            <li><a href="/recycle"><button className="btn">Log Items</button></a></li>
             <li><a href="/centres"><button className="btn">Request Pickup</button></a></li>
-            <li><a href="#about-us-section"><button className="btn">Leaderboard</button></a></li>
-            <li><a href="/" className="btn" onClick={handleLogout}>Logout</a></li>
-          </>
-        )}
-
-        {role === 'admin' && (
-          <>
-            <li><a href="/" className="btn">Home</a></li>
-            <li><a href="/user"><button className="btn">Profile</button></a></li>
-            <li><a href="#about-us-section"><button className="btn">Analytics</button></a></li>
+            <li><a href="/rewards"><button className="btn">Rewards</button></a></li>
+            <li><a href="/leaderboard"><button className="btn">Leaderboard</button></a></li>
             <li><a href="/" className="btn" onClick={handleLogout}>Logout</a></li>
           </>
         )}

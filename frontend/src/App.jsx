@@ -7,10 +7,12 @@ import Programs from "./Components/Programs/Programs";
 import Title from "./Components/Title/Title";
 import About from "./Components/About/About";
 import Login from './Pages/Login';
-import UserDashboard from './Pages/User';
-import AdminDashboard from './Pages/Admin';
+import UserDashboard from './Pages/Dashboard';
 import Register from './Pages/Register';
 import RecyclingCentres from './Pages/RecyclingCentres';
+import LogItemForm from './Pages/LogItem';
+import RewardsPage from './Pages/Rewards';
+import Leaderboard from './Pages/Leaderboard';
 
 const App = () => {
   return (
@@ -35,11 +37,13 @@ const App = () => {
           />
 
           {/* Auth & dashboard routes */}
-          <Route path="/user" element={<UserDashboard />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/dashboard" element={<UserDashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/centres" element={<RecyclingCentres />} />
+          <Route path="/recycle" element={<LogItemForm />} />
+          <Route path="/rewards" element={<RewardsPage />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
         </Routes>
       </Router>
     </AuthProvider>

@@ -1,0 +1,37 @@
+.log-item-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.log-item-form input,
+.log-item-form select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.submit-btn {
+  margin-top: 10px;
+  padding: 10px;
+  background: #2c6ed5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit-btn:hover {
+  background: #1d4ea3;
+}
+
+.log-message {
+  margin-top: 20px;
+  background: #e3fbe3;
+  border: 1px solid #6cd96c;
+  color: #1f7a1f;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+}
