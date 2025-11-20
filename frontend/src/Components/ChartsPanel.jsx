@@ -8,10 +8,10 @@ function ChartsPanel() {
   useEffect(() => {
     const loadStats = async () => {
       try {
-        const pendingRes = await fetch("http://localhost:5000/api/views/pending-pickups");
+        const pendingRes = await fetch("http://localhost:5000/api/views/pending_pickups");
         const pending = await pendingRes.json();
 
-        const completedRes = await fetch("http://localhost:5000/api/views/completed-pickups");
+        const completedRes = await fetch("http://localhost:5000/api/views/completed_pickups");
         const completed = await completedRes.json();
 
         setStats({
