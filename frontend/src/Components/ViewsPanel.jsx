@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 
 const views = [
-    { key: "items-shipped", label: "Items Shipped" },
-    { key: "most-popular", label: "Most Popular Centres" },
-    { key: "average-quantity", label: "Average Item Quantity" },
-    { key: "all-centres", label: "All Centres" },
-    { key: "popular-canada", label: "Popular in Canada" },
-    { key: "active-users", label: "Active Users" },
-    { key: "redeemed-rewards", label: "Redeemed Rewards" },
-    { key: "prestigious-awards", label: "Prestigious Awards" },
-    { key: "completed-pickups", label: "Completed Pickups" },
-    { key: "pending-pickups", label: "Pending Pickups" }
+    { key: "items_shipped", label: "Items Shipped" },
+    { key: "most_popular", label: "Most Popular Centres" },
+    { key: "average_quantity", label: "Average Item Quantity" },
+    { key: "all_centres", label: "All Centres" },
+    { key: "popular_canada", label: "Popular in Canada" },
+    { key: "active_users", label: "Active Users" },
+    { key: "redeemed_rewards", label: "Redeemed Rewards" },
+    { key: "prestigious_awards", label: "Prestigious Awards" },
+    { key: "completed_pickups", label: "Completed Pickups" },
+    { key: "pending_pickups", label: "Pending Pickups" }
 ];
 
 const userAllowedViews = [
-    "most-popular"
+    "most_popular"
 ];
 
 function ViewsPanel({ user }) {

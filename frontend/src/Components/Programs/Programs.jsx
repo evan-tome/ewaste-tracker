@@ -25,7 +25,7 @@ const Programs = () => {
       <div className="program" onClick={() => goTo("/dashboard")}>
         <img src={program_1} alt="" />
         <div className="caption">
-          <p>Check your profile</p>
+          <p>View your dashboard</p>
         </div>
       </div>
 
